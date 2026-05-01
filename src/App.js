@@ -288,7 +288,7 @@ const initialFacts = [
                 <div style={{fontSize:11,color:"#aaa",marginBottom:2,textAlign:isMe?"right":"left"}}>{isMe?myName:"Freundin"} · {formatTime(item.timestamp)}</div>
                 <div style={{background:isMe?"#EEEDFE":"#f5f5f5",borderRadius:12,borderBottomRightRadius:isMe?3:12,borderBottomLeftRadius:isMe?12:3,padding:"10px 13px",fontSize:14,lineHeight:1.5,color:isMe?"#26215C":"#222",border:"1px solid #eee"}}>
                   <Badge label={item.category} color={isMe?"#CECBF6":"#e0e0e0"} textColor={isMe?"#3C3489":"#444"}/>
-                  <p style={{margin:"6px 0 8px"}}>{item.text}</p>
+                  <p style={{margin:"6px 0 8px"}} dangerouslySetInnerHTML={{__html: item.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}}></p>
                   <button onClick={()=>toggleKnew(item.id)} style={{background:knew?"#C0DD97":"transparent",border:`1px solid ${knew?"#97C459":"#ddd"}`,borderRadius:6,padding:"3px 10px",cursor:"pointer",fontSize:12,color:knew?"#27500A":"#888"}}>
                     {knew?"✓ ":""}Das wusste ich! {item.reactions.knew.length>0&&`(${item.reactions.knew.length})`}
                   </button>
@@ -304,8 +304,7 @@ const initialFacts = [
             {CATEGORIES.map(c=><option key={c}>{c}</option>)}
           </select>
           <div style={{display:"flex",gap:8}}>
-            <textarea value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendFact();}}} placeholder="Dein heutiger Fact…" rows={2} style={{flex:1,resize:"none",borderRadius:10,border:"1px solid #ddd",padding:"8px 12px",fontSize:14,fontFamily:"system-ui,sans-serif"}}/>
-            <button onClick={sendFact} style={{background:"#533AB7",color:"#fff",border:"none",borderRadius:10,padding:"0 16px",cursor:"pointer",fontWeight:500,fontSize:14}}>Senden</button>
+<textarea value={input} onChange={e=>setInput(e.target.value)} placeholder="Dein heutiger Fact…" rows={2} style={{flex:1,resize:"none",borderRadius:10,border:"1px solid #ddd",padding:"8px 12px",fontSize:14,fontFamily:"system-ui,sans-serif"}}/>            <button onClick={sendFact} style={{background:"#533AB7",color:"#fff",border:"none",borderRadius:10,padding:"0 16px",cursor:"pointer",fontWeight:500,fontSize:14}}>Senden</button>
           </div>
         </div>
       </>}
