@@ -116,6 +116,7 @@ function CharBuilder({char,onChange}){
 
 // ── Helper Components ──────────────────────────────────────────────────────
 function Badge({label,color="#E6F1FB",textColor="#0C447C"}){return <span style={{background:color,color:textColor,fontSize:11,padding:"2px 8px",borderRadius:6,fontWeight:500}}>{label}</span>;}
+// eslint-disable-next-line no-unused-vars
 function XPBar({xp}){const level=Math.floor(xp/100)+1,progress=xp%100;return(<div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:12,color:"#888",minWidth:52}}>Lvl {level}</span><div style={{flex:1,height:6,background:"#eee",borderRadius:3}}><div style={{width:`${progress}%`,height:"100%",background:"#533AB7",borderRadius:3,transition:"width 0.4s"}}/></div><span style={{fontSize:12,color:"#888",minWidth:40}}>{xp} XP</span></div>);}
 function formatTime(d){if(!d)return"";const date=d.toDate?d.toDate():d;return date.toLocaleTimeString("de-CH",{hour:"2-digit",minute:"2-digit"});}
 function formatDate(d){if(!d)return"";const date=d.toDate?d.toDate():d;const now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate()),msgDay=new Date(date.getFullYear(),date.getMonth(),date.getDate()),diff=Math.round((today-msgDay)/86400000);if(diff===0)return"Heute";if(diff===1)return"Gestern";return date.toLocaleDateString("de-CH");}
