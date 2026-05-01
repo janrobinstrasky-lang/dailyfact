@@ -161,7 +161,7 @@ function AuthScreen({onDone}){
           {["login","register"].map(m=><button key={m} onClick={()=>{setMode(m);setStep(1);setError("");}} style={{flex:1,padding:"8px",border:"none",background:mode===m?"#533AB7":"#f0f0f0",color:mode===m?"#fff":"#555",borderRadius:8,cursor:"pointer",fontWeight:500,fontSize:14}}>{m==="login"?"Einloggen":"Registrieren"}</button>)}
         </div>
 
-        {mode==="register"&&step===2?(
+        {mode==="register"&&step===2&&email&&password?(
           <div>
             <p style={{fontWeight:500,marginBottom:12}}>Wähle deinen Charakter</p>
             <div style={{marginBottom:12}}>
