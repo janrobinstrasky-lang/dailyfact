@@ -219,6 +219,7 @@ const initialFacts = [
   const moodScore=calcMoodScore(streak,!!myTodayFact,quizState.correct);
   const mood=getMood(moodScore);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(()=>{const now=new Date();if(now.getHours()>=18&&!myTodayFact)setShowReminder(true);else setShowReminder(false);},[facts]);
   useEffect(()=>{if(bottomRef.current)bottomRef.current.scrollIntoView({behavior:"smooth"});},[facts,tab]);
 
