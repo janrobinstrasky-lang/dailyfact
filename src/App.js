@@ -139,7 +139,7 @@ function AuthScreen({onDone}){
       if(mode==="login"){
         await signInWithEmailAndPassword(auth,email,password);
       } else {
-        if(step===1){setStep(2);setLoading(false);return;}
+        if(step===1){setLoading(false);setStep(2);return;}
         const cred=await createUserWithEmailAndPassword(auth,email,password);
         await setDoc(doc(db,"users",cred.user.uid),{name,char,xp:0,createdAt:serverTimestamp()});
       }
@@ -159,10 +159,10 @@ function AuthScreen({onDone}){
         </div>
 
         <div style={{display:"flex",gap:8,marginBottom:20}}>
-          {["login","register"].map(m=><button key={m} onClick={()=>{setMode(m);setStep(1);setError("");}} style={{flex:1,padding:"8px",border:"none",background:mode===m?"#533AB7":"#f0f0f0",color:mode===m?"#fff":"#555",borderRadius:8,cursor:"pointer",fontWeight:500,fontSize:14}}>{m==="login"?"Einloggen":"Registrieren"}</button>)}
-        </div>
-
-        {mode==="register"&&step===2&&email&&password?(
+        
+      {["login","register"].map(m=><button key={m} onClick={()=>{setMode(m);setStep(1);setError("");}} 
+      </div>  
+     {mode==="register"&&step===2?(
           <div>
             <p style={{fontWeight:500,marginBottom:12}}>Wähle deinen Charakter</p>
             <div style={{marginBottom:12}}>
